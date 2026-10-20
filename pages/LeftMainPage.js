@@ -8,16 +8,14 @@ export class LeftMainPage extends BasePage {
     super(page);
 
     this.cydeoImageAtLeftWindow = page.locator(
-      "(//img[@src = 'assets/images/logo.svg'])[2]"
+      ".details-footer img[src='assets/images/logo.svg']"
     );
 
-    this.secureCheckout = page.locator("//p[@class='checkout-title']");
+    this.secureCheckout = page.locator(".checkout-title");
 
-    this.footerElements = page.locator(
-      "//a[contains(@href, 'https://cydeo.com/')]"
-    );
+    this.footerElements = page.locator(".details-footer > a");
 
-    this.programName = page.locator("//p[@class='course-name']/a");
+    this.programName = page.locator(".course-name a");
     
   }
 

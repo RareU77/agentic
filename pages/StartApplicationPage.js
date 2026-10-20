@@ -104,7 +104,7 @@ export class StartApplicationPage extends BasePage {
     );
 
     this.footer = page.locator(
-      "//p[@class = 'footer-text' and contains(text(), 'Need help?')]"
+      ".step1.show-step .right-footer .footer-text"
     );
 
     this.nextButton = page.getByRole("button", { name: "Next", exact: true });
