@@ -29,6 +29,10 @@ export class StartApplicationPage extends BasePage {
 
     this.emailInputBox = page.locator("[formcontrolname='email']");
 
+    this.emailFormatInvalidInput = page.locator(
+      "[formcontrolname='email']:invalid"
+    );
+
     this.phoneNumberInputBox = page.locator("[formcontrolname='phoneNumber']");
 
     this.howDidYouHearAboutUsDropDown = page.getByRole("combobox", {

@@ -18,6 +18,7 @@ Feature: Enter my Personal details
     @sep10-1
     Scenario: Personal detail fields have the expected input types and validation
         Then the first name, last name, and email fields are present with expected types
+        And the email field rejects malformed addresses
         And the phone field accepts numbers only
 
     @sep10-2
@@ -25,5 +26,11 @@ Feature: Enter my Personal details
         Then the referral source dropdown displays standard options
 
     @sep10-3
-    Scenario: Next is disabled when required personal details are missing or invalid
-        Then the Next button is disabled when required personal details are missing
+    Scenario Outline: Next is disabled when required personal details are missing or invalid
+        When required personal details are "<validation state>"
+        Then the Next button is disabled
+
+        Examples:
+            | validation state |
+            | missing          |
+            | invalid email    |

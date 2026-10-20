@@ -1,5 +1,6 @@
-import { Then } from "@cucumber/cucumber";
+import { Then, When } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
+import { faker } from "@faker-js/faker";
 import { startApplicationPage } from "../../globalPagesSetup.js";
 
 Then(
@@ -28,6 +29,11 @@ Then("the phone field accepts numbers only", async function () {
   await expect(startApplicationPage.phoneNumberInputBox).toHaveValue(/^\d*$/);
 });
 
+Then("the email field rejects malformed addresses", async function () {
+  await startApplicationPage.emailInputBox.fill("invalid-email");
+  await expect(startApplicationPage.emailFormatInvalidInput).toBeVisible();
+});
+
 Then("the referral source dropdown displays standard options", async function () {
   await expect(
     startApplicationPage.howDidYouHearAboutUsDropDown
@@ -46,3 +52,27 @@ Then(
     await expect(startApplicationPage.nextButton).toBeDisabled();
   }
 );
+
+When(
+  "required personal details are {string}",
+  async function (validationState) {
+    switch (validationState) {
+      case "missing":
+        return;
+      case "invalid email":
+        await startApplicationPage.fillPersonalDetails({
+          firstName: faker.person.firstName(),
+          lastName: faker.person.lastName(),
+          email: "invalid-email",
+          phoneNumber: faker.string.numeric(10),
+        });
+        return;
+      default:
+        throw new Error(`Unsupported personal detail validation state: ${validationState}`);
+    }
+  }
+);
+
+Then("the Next button is disabled", async function () {
+  await expect(startApplicationPage.nextButton).toBeDisabled();
+});
