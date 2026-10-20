@@ -12,7 +12,25 @@ Feature: Enter my Personal details
     #* AC2: "How did you hear about us?" A standard dropdown list is present.
     #* AC3: The 'Next' button should be disabled if any required data is missing or invalid.
 
-    #TODO: Create scenarios that cover all the acceptance criteria
-
     Background:
         Given user is on the enrollment page
+
+    @sep10-1
+    Scenario: Personal detail fields have the expected input types and validation
+        Then the first name, last name, and email fields are present with expected types
+        And the email field rejects malformed addresses
+        And the phone field accepts numbers only
+
+    @sep10-2
+    Scenario: Referral source is available as a dropdown
+        Then the referral source dropdown displays standard options
+
+    @sep10-3
+    Scenario Outline: Next is disabled when required personal details are missing or invalid
+        When required personal details are "<validation state>"
+        Then the Next button is disabled
+
+        Examples:
+            | validation state |
+            | missing          |
+            | invalid email    |
