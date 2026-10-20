@@ -11,9 +11,22 @@ Feature: View Product Landing Page
     #* AC4: The system displays "Need help? Contact us at enrollment@cydeo.com" in the footer on the right.
 
 
-    #TODO: Create scenarios that cover all the acceptance criteria
-    
     Background:
         Given user is on the enrollment page
 
+    @sep07-1
+    Scenario: Cydeo Secure Checkout text is displayed
+        Then the Cydeo Secure Checkout text is displayed
+
+    @sep07-2
+    Scenario: Program name is displayed
+        Then the program name is displayed on the left side
+
+    @sep07-3
+    Scenario: Left footer displays the logo and policy links in order
+        Then the left footer displays the logo and policy links in order
+
+    @sep07-4
+    Scenario: Help contact is displayed in the right footer
+        Then the help contact is displayed in the right footer
 
