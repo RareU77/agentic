@@ -7,9 +7,9 @@ export class PaymentPlanPage extends BasePage {
   constructor(page) {
     super(page);
 
-    this.chooseAPaymentPlanText = page.locator(
-      "//*[text()='Choose a payment plan']"
-    );
+    this.chooseAPaymentPlanText = page.getByText("Choose a payment plan", {
+      exact: true,
+    });
 
     this.upfrontPaymentOption = page.locator(
       "//span[@class='payment-type'][contains(text(),'Upfront')]"

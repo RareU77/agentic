@@ -8,7 +8,15 @@ Feature: Click on the next button on step 1
     #*              b. Test by providing only the required fields
     
 
-    #TODO: Create scenarios that cover all the acceptance criteria
-
     Background:
         Given user is on the enrollment page
+
+    @sep19-1
+    Scenario Outline: Valid personal details navigate to the payment plan step
+        When user submits valid personal details with "<field set>"
+        Then the payment plan step is displayed
+
+        Examples:
+            | field set           |
+            | all fields          |
+            | required fields only |

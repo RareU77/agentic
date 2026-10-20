@@ -23,22 +23,17 @@ export class StartApplicationPage extends BasePage {
 
     this.reviewStepCircle = page.locator("(//*[@class='step-circle'])[3]");
 
-    this.firstNameInputBox = page.locator(
-      "//input[@formcontrolname='firstName']"
-    );
+    this.firstNameInputBox = page.locator("[formcontrolname='firstName']");
 
-    this.lastNameInputBox = page.locator(
-      "//input[@formcontrolname='lastName']"
-    );
+    this.lastNameInputBox = page.locator("[formcontrolname='lastName']");
 
-    this.emailInputBox = page.locator("//input[@formcontrolname='email']");
+    this.emailInputBox = page.locator("[formcontrolname='email']");
 
-    this.phoneNumberInputBox = page.locator(
-      "//input[@formcontrolname='phoneNumber']"
-    );
+    this.phoneNumberInputBox = page.locator("[formcontrolname='phoneNumber']");
 
-    this.howDidYouHearAboutUsDropDown = page.locator(
-      "//mat-label[text()='How did you hear about us?']"
+    this.howDidYouHearAboutUsDropDown = page.getByText(
+      "How did you hear about us?",
+      { exact: true }
     );
 
     this.emailOptionFromDropDown = page.locator(
@@ -49,9 +44,10 @@ export class StartApplicationPage extends BasePage {
       "//mat-option/span[contains(text(), 'Facebook')]"
     );
 
-    this.googleOption = page.locator(
-      "//mat-option/span[contains(text(), 'Google')]"
-    );
+    this.googleOption = page.getByRole("option", {
+      name: "Google",
+      exact: true,
+    });
 
     this.instagramOptionFromDropDown = page.locator(
       "//mat-option/span[contains(text(), 'Instagram')]"
@@ -111,9 +107,7 @@ export class StartApplicationPage extends BasePage {
       "//p[@class = 'footer-text' and contains(text(), 'Need help?')]"
     );
 
-    this.nextButton = page.locator(
-      "//button[@class = 'next-button'][contains(text(), 'Next')]"
-    );
+    this.nextButton = page.getByRole("button", { name: "Next", exact: true });
 
     this.programBasePrice = page.locator("//span[@class='ng-star-inserted']/s");
 
@@ -154,6 +148,22 @@ export class StartApplicationPage extends BasePage {
    */
   async enterPhoneNumber(phoneNumber) {
     await this.phoneNumberInputBox.fill(phoneNumber);
+  }
+
+  async fillPersonalDetails({
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    howDidYouHear,
+  }) {
+    await this.enterFirstName(firstName);
+    await this.enterLastName(lastName);
+    await this.enterEmail(email);
+    await this.enterPhoneNumber(phoneNumber);
+    if (howDidYouHear) {
+      await this.selectHowDidYouHearAboutUs(howDidYouHear);
+    }
   }
 
   /**
