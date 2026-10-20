@@ -1,0 +1,54 @@
+Agents: A specialist role with behavior and allowed tools
+
+Skills: Reusable task instructions
+
+
+BDD layers:
+
+    1. Business layer
+            Create feature files for scenarios (Declarative steps) - written in Gherkin
+
+    2. Technical layer
+            Generating Step definitions -> work on the automation script
+
+POM (Page Object Model):
+        for each web page, we create a page class.
+        We will store web page' elements and actions in its page class.
+        which allows us to reuse them in tests
+
+Manual Testing Workflow:
+
+        1. Analyzeing the requirments
+                        - If any clarifications needed ====> business team (BA or PO)
+
+        2. Explore the application to understand the behavior of the application
+
+        3. Create manual test cases 
+                Gherkin syntaxes
+                Xray steps
+
+Traditional flow of working on tests 
+Automation Testing Workflow:
+
+        1. Create a seperate branch for the user story
+
+        2. work on features folder:
+                add the scenarios into the feature file
+
+        3. work on the steps folder:
+                Generating step definitions
+                work on the body of the step definitions 
+                (any web element or page actions, we create them under the pages)
+
+        4. Run the test and review the report:
+                Determines the result of pass or failed
+                
+                If Passed ==> go to step 5
+
+                If Failed (Do not Go to Step5):
+                        RCA (Root Cause Analysis)
+                        Determine why test is failed
+                        Analyze if its faied due to the product defect that I should be reporting of.
+
+        5. Push to the github feature branch, create PR 
+        
