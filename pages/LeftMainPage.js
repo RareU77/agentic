@@ -17,7 +17,7 @@ export class LeftMainPage extends BasePage {
       "//a[contains(@href, 'https://cydeo.com/')]"
     );
 
-    this.programName = page.locator("//p[@class='course-name']/a");
+    this.programName = page.locator(".course-name a");
     
   }
 
