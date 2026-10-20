@@ -1,3 +1,4 @@
+import "dotenv/config";
 import { Before, After, setWorldConstructor, Status, setDefaultTimeout } from "@cucumber/cucumber";
 import { chromium, firefox, webkit } from "@playwright/test";
 import { initElements } from "../globalPagesSetup.js";

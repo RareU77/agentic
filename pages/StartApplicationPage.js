@@ -31,10 +31,9 @@ export class StartApplicationPage extends BasePage {
 
     this.phoneNumberInputBox = page.locator("[formcontrolname='phoneNumber']");
 
-    this.howDidYouHearAboutUsDropDown = page.getByText(
-      "How did you hear about us?",
-      { exact: true }
-    );
+    this.howDidYouHearAboutUsDropDown = page.getByRole("combobox", {
+      name: "How did you hear about us?",
+    });
 
     this.emailOptionFromDropDown = page.locator(
       "//mat-option/span[contains(text(), 'Email')]"
@@ -171,7 +170,7 @@ export class StartApplicationPage extends BasePage {
    */
   async selectHowDidYouHearAboutUs(howDidYouHear) {
     howDidYouHear = howDidYouHear.toLowerCase();
-    await this.howDidYouHearAboutUsDropDown.click();
+    await this.howDidYouHearAboutUsDropDown.press("Enter");
     switch (howDidYouHear) {
       case "email":
         await this.emailOptionFromDropDown.click();
