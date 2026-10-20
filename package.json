@@ -2,14 +2,14 @@
   "name": "sep-automation",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "npx cucumber-js",
-    "test:tag": "npx cucumber-js --tags @sep11",
-    "test:tag:dryrun": "npx cucumber-js --tags @sep11 --dry-run",
-    "test:smoke": "npx cucumber-js --tags @smoke",
-    "Mac-open:report": "open reports/cucumber-report.html",
-    "Windows-open:report": "start reports/cucumber-report.html"
-  },
+"scripts": {
+  "test": "node -r dotenv/config ./node_modules/@cucumber/cucumber/bin/cucumber-js",
+  "test:tag": "node -r dotenv/config ./node_modules/@cucumber/cucumber/bin/cucumber-js --tags @sep19",
+  "test:tag:dryrun": "node -r dotenv/config ./node_modules/@cucumber/cucumber/bin/cucumber-js --tags @sep19 --dry-run",
+  "test:smoke": "node -r dotenv/config ./node_modules/@cucumber/cucumber/bin/cucumber-js --tags @smoke",
+  "Mac-open:report": "open reports/cucumber-report.html",
+  "Windows-open:report": "start reports/cucumber-report.html"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
